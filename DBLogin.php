@@ -23,14 +23,14 @@
         $fila=mysqli_fetch_assoc($resultado);
         if ($fila["idUsuario"] == NULL)
         {
-            echo "ERROR";
             $_SESSION["SESION_INICIADA"] = 0;
+            echo "ERROR";
         }
         else
         {
-            echo "SESIÓN INICIADA";
             $_SESSION["SESION_INICIADA"] = 1;
             $_SESSION["idUsuario"] = $fila["idUsuario"];
+            echo "SESIÓN INICIADA";
         }
     }
     mysqli_close($conexion);
