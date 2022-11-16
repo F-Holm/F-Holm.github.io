@@ -12,22 +12,22 @@
     $password   = "alumnoipm";
     $conexion = mysqli_connect($servername, $username, $password, $database); // se crea la conexion
 
-    if($_SESSION["SESION_INICIADA"] == null)
+    /*if($_SESSION == null)
     {
         $_SESSION["SESION_INICIADA"] = 0;
-    }
+    }*/
     if (!$conexion) {
         die("Conexion fallida: " . mysqli_connect_error());
     }
-    else if($_SESSION["SESION_INICIADA"] == 1){
+    //else if($_SESSION["SESION_INICIADA"] == 1){
         //insertamos el resultado del formulario
         $IDCuenta=$_SESSION["idUsuario"];
         $resultado=mysqli_query($conexion,"insert into Carta values(null, '$MED', '$PAC', '$DRI', '$SHO', '$DEF', '$PAS', '$PHY', '$IDCuenta');");
         //seleccionamos todas las filas que haya en usuarios        
         echo "INFORMACION ENVIADA";
-    }
+    /*}
     else{
         echo "ERROR";
-    }
+    }*/
     mysqli_close($conexion);
 ?>
