@@ -27,5 +27,6 @@ create table `Carta`(
 );
 
 insert into Usuario values (null, "1", "1", "1", "1@gmail.com", "1");
+insert into Carta values (null, 1, 1, 1, 1, 1, 1, 1, 1);
 select * from Usuario;
 select * from Carta;
