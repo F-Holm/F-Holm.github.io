@@ -15,25 +15,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        <script>
-            function login(){
-                $.ajax({
-                    method: "GET",
-                    url:"DBCarta.php",
-                    data: { MED: $("#MEDIA").val(), PAC: $("#PAC").val(), DRI: $("#DRI").val(), SHO: $("#SHO").val(), DEF: $("#DEF").val(), PAS: $("#PAS").val(), PHY: $("#PHY").val()}
-                })
-                .done(function(msg){
-                    console.log(msg);
-                    //alert(msg);
-                    if(msg=="INFORMACION ENVIADA"){
-                        location.href ="index.html";
-                    }
-                    if(msg=="ERROR"){
-                        location.href = "Login.html";
-                    }
-                });
-            }
-        </script>
     </head>
 
     <body bgcolor="black">
@@ -62,7 +43,7 @@
         <img id="Logo" src="Img/Logo.png" alt="LOGO">
         <img id="ibrahimovic" src="Img/portadaFifaZlatan.png">
         <img id="Carta" src="Img/Carta4.png" alt="">
-        <form>
+        <form id="formulario">
             <input id="MEDIA" class="INPUT" type="number" name="MED" placeholder="-" min="0" max="99" step="1" required>
             <input id="PAC" class="INPUT" type="number" name="PAC" placeholder="-" min="0" max="99" step="1" required>
             <input id="DRI" class="INPUT" type="number" name="DRI" placeholder="-" min="0" max="99" step="1" required>
@@ -70,7 +51,7 @@
             <input id="DEF" class="INPUT" type="number" name="DEF" placeholder="-" min="0" max="99" step="1" required>
             <input id="PAS" class="INPUT" type="number" name="PAS" placeholder="-" min="0" max="99" step="1" required>
             <input id="PHY" class="INPUT" type="number" name="PHY" placeholder="-" min="0" max="99" step="1" required>
-            <button id="login" onclick="login()" title="Ingresar" name="Ingresar">ENVIAR</button>
+            <button id="login" type="submit" title="Ingresar" name="Ingresar">ENVIAR</button>
         </form>
         <p id="Descripcion">
             VALORACION GENERAL DEL JUGADOR<br>
@@ -86,5 +67,26 @@
                 Al enviar este formulario participarás en un sorteo de un FIFA 23: ZLATAN EDITION para PS5
             </p><br>
         </footer>
+        <script>
+            $("#formulario").submit(function(event) {
+                event.preventDefault();
+                //console.log("qwe");
+                $.ajax({
+                    method: "GET",
+                    url:"DBCarta.php",
+                    data: { MED: $("#MEDIA").val(), PAC: $("#PAC").val(), DRI: $("#DRI").val(), SHO: $("#SHO").val(), DEF: $("#DEF").val(), PAS: $("#PAS").val(), PHY: $("#PHY").val()}
+                })
+                .done(function(msg){
+                    console.log(msg);
+                    alert(msg);
+                    if(msg=="INFORMACION ENVIADA"){
+                        location.href ="index.html";
+                    }
+                    if(msg=="ERROR"){
+                        location.href = "Login.html";
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
